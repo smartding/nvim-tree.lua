@@ -109,11 +109,11 @@ function M.on_keypress(mode)
   end
 
   if node.link_to and not node.entries then
-    lib.open_file(mode, node.link_to)
+    lib.open_file(mode, utils.path_relative(node.absolute_path, vim.fn.getcwd(-1, 0)))
   elseif node.entries ~= nil then
     lib.unroll_dir(node)
   else
-    lib.open_file(mode, node.absolute_path)
+    lib.open_file(mode, utils.path_relative(node.absolute_path, vim.fn.getcwd(-1, 0)))
   end
 end
 
